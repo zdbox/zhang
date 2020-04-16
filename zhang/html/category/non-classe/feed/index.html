@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Non classé &#8211; @zhang</title>
+	<atom:link href="http://zhang.fr/category/non-classe/feed" rel="self" type="application/rss+xml" />
+	<link>http://zhang.fr/</link>
+	<description></description>
+	<lastBuildDate>Mon, 13 Apr 2020 22:00:59 +0000</lastBuildDate>
+	<language>zh-CN</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+	<item>
+		<title>挂载 OneDrive、Google Drive</title>
+		<link>http://zhang.fr/%e6%8c%82%e8%bd%bd-onedrive%e3%80%81google-drive.html</link>
+					<comments>http://zhang.fr/%e6%8c%82%e8%bd%bd-onedrive%e3%80%81google-drive.html#respond</comments>
+		
+		<dc:creator><![CDATA[.zzd]]></dc:creator>
+		<pubDate>Mon, 13 Apr 2020 22:00:59 +0000</pubDate>
+				<category><![CDATA[Non classé]]></category>
+		<guid isPermaLink="false">http://zhang.fr/?p=8</guid>
+
+					<description><![CDATA[前言 是一个的命令行工具，支持在不同对象存储、网盘&#8230;]]></description>
+										<content:encoded><![CDATA[
+<h2 id="toc_0">前言</h2>
+
+
+
+<p> 是一个的命令行工具，支持在不同对象存储、网盘间同步、上传、下载数据。并且通过一些设置可以实现离线下载、服务器备份等非常实用的功能。Rclone 有很多种使用方式，挂载是其中的一种。</p>
+
+
+
+<blockquote class="wp-block-quote"><p><strong>友情提示：</strong>&nbsp;挂载这个操作并不是必须的，作为一个实验性功能它有很多局限性和问题。挂载后并不能当做一个真正的磁盘来使用，在进行文件操作时会使用本地磁盘进行缓存，即占用本地磁盘空间。使用不当还可能造成磁盘写满、VPS卡死等问题。在 Google 上搜索“Rclone”，与之相关的最多的关键词就是“挂载”，这在一定程度上对很多刚接触的小伙伴造成了误导。要稳定的进行上传、下载、同步等操作建议使用 Rclone 的原生命令功能，使用方法参见《<a href="https://p3terx.com/archives/rclone-advanced-user-manual-common-command-parameters.html" target="_blank" rel="noreferrer noopener">Rclone 进阶使用教程 &#8211; 常用命令参数</a>》。</p></blockquote>
+
+
+
+<h2 id="toc_1">安装和配置 Rclone</h2>
+
+
+
+<p>官方提供了<a href="https://p3terx.com/go/aHR0cHM6Ly9yY2xvbmUub3JnL2luc3RhbGwvI3NjcmlwdC1pbnN0YWxsYXRpb24=" target="_blank" rel="noreferrer noopener">一键安装脚本</a>：</p>
+
+
+
+<pre class="wp-block-code"><code>curl https://rclone.org/install.sh | sudo bash</code></pre>
+
+
+
+<p>安装完后，输入&nbsp;<code>rclone config</code>&nbsp;命令进入交互式配置选项，按照提示一步一步来进行操作即可。如果你一脸懵逼，可以去看《<a href="https://p3terx.com/archives/rclone-installation-and-configuration-tutorial.html" target="_blank" rel="noreferrer noopener">Rclone 安装配置教程</a>》来了解配置的详细过程。</p>
+
+
+
+<h2 id="toc_2">安装 fuse</h2>
+
+
+
+<p>挂载需要安装 fuse，根据自己的系统来选择安装命令：</p>
+
+
+
+<pre class="wp-block-code"><code># Debian/Ubantu
+apt-get update &amp;&amp; apt-get install -y fuse
+# CentOS
+yum install -y fuse</code></pre>
+
+
+
+<h2 id="toc_3">挂载网盘</h2>
+
+
+
+<p>挂载网盘分为手动挂载和开机自动挂载，根据自己的需求来选择。</p>
+
+
+
+<h3 id="toc_4">手动挂载</h3>
+
+
+
+<pre class="wp-block-code"><code>#挂载
+rclone mount &lt;网盘名称:网盘路径> &lt;本地路径> &#91;参数] --daemon
+
+#取消挂载
+fusermount -qzu &lt;本地路径></code></pre>
+
+
+
+<p><code>网盘名称</code>为配置时填的&nbsp;<code>name</code>，<code>网盘路径</code>为网盘里的文件夹，留空为整个网盘，<code>本地路径</code>为 VPS 上的本地文件夹。<code>参数</code>可以查看<a href="https://p3terx.com/go/aHR0cHM6Ly9yY2xvbmUub3JnL2NvbW1hbmRzL3JjbG9uZV9tb3VudC8=" target="_blank" rel="noreferrer noopener">官方文档</a>根据需求进行选择。实际输入时不要有括号，这里只是为了更清楚的区分。<code>--daemon</code>&nbsp;为进程守护参数，可后台运行。</p>
+
+
+
+<h4 id="toc_5">使用示例</h4>
+
+
+
+<p>输入命令进行挂载操作：</p>
+
+
+
+<pre class="wp-block-code"><code>rclone mount Onedrive:/ /Onedrive --copy-links --allow-other --allow-non-empty --umask 000 --daemon</code></pre>
+
+
+
+<p>然后输入&nbsp;<code>df -h</code>&nbsp;命令查看挂载情况。</p>
+
+
+
+<pre class="wp-block-code"><code>root@P3TERX:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            286M     0  286M   0% /dev
+tmpfs            60M  7.8M   52M  14% /run
+/dev/sda1        99G   25G   71G  26% /
+tmpfs           297M   24K  297M   1% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           297M     0  297M   0% /sys/fs/cgroup
+Onedrive:       5.0T  216G  4.8T   5% /Onedrive #这个就是挂载的网盘</code></pre>
+
+
+
+<p>取消挂载：</p>
+
+
+
+<pre class="wp-block-code"><code>fusermount -qzu /Onedrive</code></pre>
+
+
+
+<h3 id="toc_6">开机自动挂载</h3>
+
+
+
+<ul><li>下载并编辑自启脚本</li></ul>
+
+
+
+<pre class="wp-block-code"><code>wget -N git.io/rcloned &amp;&amp; nano rcloned</code></pre>
+
+
+
+<ul><li>修改内容：</li></ul>
+
+
+
+<pre class="wp-block-code"><code>NAME="Onedrive" #Rclone配置时填写的name
+REMOTE=''  #远程文件夹，网盘里的挂载的一个文件夹，留空为整个网盘
+LOCAL='/Onedrive'  #挂载地址，VPS本地挂载目录</code></pre>
+
+
+
+<ul><li>设置开机自启</li></ul>
+
+
+
+<pre class="wp-block-code"><code>mv rcloned /etc/init.d/rcloned
+chmod +x /etc/init.d/rcloned
+update-rc.d -f rcloned defaults # Debian/Ubuntu
+chkconfig rcloned on # CentOS
+bash /etc/init.d/rcloned start</code></pre>
+
+
+
+<p>看到&nbsp;<code>[信息] rclone 启动成功 !</code>&nbsp;即可。</p>
+
+
+
+<h4 id="toc_7">管理</h4>
+
+
+
+<p>开始挂载&nbsp;<code>bash /etc/init.d/rcloned start</code></p>
+
+
+
+<p>停止挂载&nbsp;<code>bash /etc/init.d/rcloned stop</code></p>
+
+
+
+<p>重新挂载&nbsp;<code>bash /etc/init.d/rcloned restart</code></p>
+
+
+
+<p>查看日志&nbsp;<code>tail -f /$HOME/.rclone/rcloned.log</code></p>
+
+
+
+<h4 id="toc_8">卸载自启挂载</h4>
+
+
+
+<pre class="wp-block-code"><code>bash /etc/init.d/rcloned stop
+update-rc.d -f rcloned remove # Debian/Ubuntu
+chkconfig rcloned off # CentOS
+rm -f /etc/init.d/rcloned</code></pre>
+
+
+]]></content:encoded>
+					
+					<wfw:commentRss>http://zhang.fr/%e6%8c%82%e8%bd%bd-onedrive%e3%80%81google-drive.html/feed</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
