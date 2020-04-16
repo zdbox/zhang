@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Python 3.6一键安装脚本 for CentOS/Debian - @ZHANG</title><meta name="keywords" content="系统,"><meta name="description" content="安装 1、检查下系统是否有Python3 2、安装Python3 然后再输入python3 -V看是否安装成功 […]"><meta name="author" content="@ZHANG"><meta property="og:type" content="blog"><meta property="og:site_name" content="@ZHANG"><meta property="og:image" content=""><meta property="og:title" content="Python 3.6一键安装脚本 for CentOS/Debian"><meta property="og:description" content="安装 1、检查下系统是否有Python3 2、安装Python3 然后再输入python3 -V看是否安装成功 […]"><meta property="og:url" content="http://zhang.fr/python-3-6-yi-jian-an-zhuang-jue-ben-for-centos-debian.html"><meta property="og:author" content="@ZHANG"><meta property="og:release_date" content="2020-04-14"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><link rel="dns-prefetch" href="http://zhang.fr"><link rel="dns-prefetch" href="//at.alicdn.com"><link rel="dns-prefetch" href="//s.w.org"><link rel="stylesheet" id="wp-block-library-css" href="http://zhang.fr/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all"><link rel="stylesheet" id="qzhai-css" href="http://zhang.fr/wp-content/themes/No.7_qzhai/css/style_o.css" type="text/css" media="all"><link rel="stylesheet" id="qzhai_icont-css" href="//at.alicdn.com/t/font_361592_j2u0npmvvt3dte29.css?ver=5.4" type="text/css" media="all"><script type="text/javascript" src="http://zhang.fr/wp-content/themes/No.7_qzhai/js/jquery.min.js"></script></head><body class="uk-height-1-1">
+		
+				<div id="main" class="wp uk-grid uk-grid-collapse" style="max-width:960px">
+			<div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-5 posr">        				<div id="head" data-uk-sticky="{boundary: true,top:80}"><div id="op_head"><div class="uk-panel bs" id="op_hed"><div class="tx"><div class="avatar_"><img src="http://zhang.fr/zhang/2020/04/480034_545821658795322_1569525290_n.jpg"></div></div><h1 class="uk-panel-title"><a href="http://zhang.fr">@ZHANG</a></h1><span></span><div class="my uk-grid-collapse uk-grid uk-grid-width-1-3"><div><span>4</span><span><i class="uk-icon-file-text"></i></span><a href="http://zhang.fr/page-d-exemple" title="文章" data-uk-tooltip="{pos:'bottom'}"></a></div><div><span>2</span><span><i class="uk-icon-folder"></i></span><a href="http://zhang.fr/python-3-6-yi-jian-an-zhuang-jue-ben-for-centos-debian.html" title="分类" data-uk-tooltip="{pos:'bottom'}"></a></div><div><span>0</span><span><i class="uk-icon-tags"></i></span><a href="http://zhang.fr/python-3-6-yi-jian-an-zhuang-jue-ben-for-centos-debian.html" title="标签" data-uk-tooltip="{pos:'bottom'}"></a></div></div><a href="#s_s" class="s_s uk-navbar-toggle uk-hidden-large" data-uk-offcanvas></a><ul id="nav-top" class="nav uk-nav uk-hidden-small"><li id="menu-item-43" class=""><a href="http://zhang.fr/category/xi-tong" class="qzhai_bgc_hover">系统</a></li>
+<li id="menu-item-44" class=""><a href="http://zhang.fr/category/xian-yan-sui-yu" class="qzhai_bgc_hover">闲言碎语</a></li>
+<li id="menu-item-42" class=""><a href="http://zhang.fr/page-d-exemple" class="qzhai_bgc_hover">文章归档</a></li>
+<li id="menu-item-41" class=""><a href="http://zhang.fr/guan-yu-wo" class="qzhai_bgc_hover">关于我</a></li>
+</ul><form role="search" class="s uk-form uk-hidden-small" id="searchform" method="get" action="http://zhang.fr/"><input class="uk-width-1-1 qzhai_bgc_hover " type="text" value="" name="s" id="s" placeholder="搜索"></form></div></div><div class="ft uk-hidden-small"><p><a href="#" title="" data-uk-tooltip="{pos:'bottom'}"><i class="uk-icon-copyright"> </i> 2020 @zhang </a><a href="http://qzhai.net" target="_black" title="主题制作:衫小寨" data-uk-tooltip="{pos:'bottom'}"> Theme by Qzhai</a></p></div>    		</div>
+        </div>
+
+            <div id="content" class="uk-width-small-1-1 uk-width-medium-3-4 uk-width-large-4-5 uk-grid uk-grid-collapse">
+            <div class=" uk-width-1-1">            		<div id="index" class="bs uk-text-break">
+            			<article id="article" class="uk-article"><h1 class="uk-article-title">Python 3.6一键安装脚本 for CentOS/Debian	</h1>
+
+					    	<ul class="singlenav uk-breadcrumb"><li>
+					    			
+					    			<i class="iconfont icon-rili"></i>
+					    			2020-04-14				    			</li>
+					    		<li><i class="iconfont icon-faxianxianshimima"></i> 0</li>
+					    		<li>
+					    			
+					    			<i class="iconfont icon-liaotian"></i>
+					    			<a href="http://zhang.fr/python-3-6-yi-jian-an-zhuang-jue-ben-for-centos-debian.html#respond"><span class="dsq-postid" data-dsqidentifier="13 http://zhang.fr/?p=13">0</span></a>				    			</li>
+					    							    							    	</ul><h2>安装</h2>
+
+
+
+<p><strong>1、检查下系统是否有Python3</strong></p>
+
+
+
+<pre class="wp-block-code"><code>python3 -V
+</code></pre>
+
+
+
+<p><strong>2、安装Python3</strong></p>
+
+
+
+<pre class="wp-block-code"><code>#CentOS系统
+wget https://dl.xinfu.workers.dev/CentOS_Python3.6.sh && sh CentOS_Python3.6.sh
+#Debian系统
+wget https://dl.xinfu.workers.dev/Debian_Python3.6.sh && sh Debian_Python3.6.sh</code></pre>
+
+
+
+<p>然后再输入<code>python3 -V</code>看是否安装成功。一般安装成功就可以使用<code>python3</code>、<code>pip3</code>了。</p>
+
+
+
+<h2>提示</h2>
+
+
+
+<p>如果想修改系统默认的<code>Python</code>版本的话，还需要创建软链接，可使用命令：</p>
+
+
+
+<pre class="wp-block-code"><code>cd /usr/bin
+mv python python.backup
+ln -s /usr/local/bin/python3 /usr/bin/python</code></pre>
+
+
+
+<p>然后重启运行<code>python -V</code>查看即可。</p>
+
+
+
+<p>一般<code>CenOS</code>系统修改后会出现<code>yum</code>用不了的情况，这时候需要编辑<code>yum</code>的配置文件，方法如下：</p>
+
+
+
+<pre class="wp-block-code"><code>vi /usr/bin/yum
+将文件首行
+#!usr/bin/python
+修改为python之前的版本，如：
+#!/usr/bin/python2.7</code></pre>
+
+
+
+<p>Python 一键安装全部依赖包</p>
+
+
+
+<pre class="wp-block-code"><code>pip3 freeze > requirements.txt
+生成的文件会像这个样子
+
+alembic==1.0.10
+blinker==1.4
+Click==7.0
+dominate==2.3.5
+Flask==1.0.3
+然后就可以用
+
+pip3 install -r requirements.txt
+来一次性安装 requirements.txt 里面所有的依赖包，真是非常方便。
+
+使用 Python3 的 venv
+创建虚拟环境
+
+python -m venv env
+激活虚拟环境
+
+. env/bin/activate
+使用 poetry 包管理
+poetry 的工作方式就像 Node.js 里的 npm/yarn。
+
+首先用 pip install poetry 来安装它，可以用 poetry new [name] 来生成新项目，或者在项目的根目录下面运行 poetry init 来初始化。
+
+这样 poetry 会在这个项目里创建一个 pyproject.toml 的文件，就像 package.json 一样，里面记录了项目所有的依赖包版本信息。
+
+[tool.poetry]
+name = "my-package"
+version = "0.1.0"
+description = "The description of the package"
+
+[tool.poetry.dependencies]
+python = "~2.7 || ^3.2"  # Compatible python versions must be declared here
+toml = "^0.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[tool.poetry.scripts]
+my-script = 'my_package:main'
+poetry install可以一键安装所有依赖包，还会生成 poetry.lock 文件，里面记录了这次安装时的依赖包。poetry install --no-dev 可以只安装生产环境的包，不安装开发环境的包。
+
+在 poetry add [name] 可以安装 Flask 到生产环境，比如 poetry add flask，再加 --dev 参数，poetry add --dev flask就会安装到开发环境。
+
+poetry remove [name] 可以卸载依赖包，poetry show 可以显式安装好的包。
+
+更多用法请查看 poetry 
+</code></pre>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p>安装Python3 之后塔宝面板打不开解决办法</p>
+
+
+
+<p>需要移除软链还原原来的Python版本</p>
+
+
+
+<pre class="wp-block-code"><code>rm -rf /usr/bin/python
+ln -s /usr/bin/python2.7 /usr/bin/python
+</code></pre>
+
+
+
+<p>这时候重启一下面板会看到</p>
+
+
+
+<pre class="wp-block-code"><code>[<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2654494952664a4945474a4e495552">[email protected]</a> ~]# service bt restart
+Stopping Bt-Tasks... done
+Stopping Bt-Panel... done
+Starting Bt-Panel... done
+Starting Bt-Tasks... done</code></pre>
+
+
+
+<p><a href="https://my.oschina.net/bileel/blog/2222172">https://my.oschina.net/bileel/blog/2222172</a></p>
+
+
+
+<p></p>
+
+
+
+<p>宝塔面板 MySQL 安装最低内存限制</p>
+
+
+
+<p><strong>宝塔面板–文件–路径/www/server/panel/data–编辑plugin.json</strong></p>
+
+
+
+<p>（注意不要在命令行编辑，否则很难找到要编辑的内容）</p>
+
+
+
+<p>打开编辑面板后按Ctrl+F搜索768（如果要安装MySQL5.6）或1560（如果要安装MySQL5.7），找到包含类似下面内容的片段：</p>
+
+
+
+<p><strong>{“m_version”:”5.6″,”dependnet”:””,”update_msg”:””,”version”:”45″,”os_limit”:0,”cpu_limit”:1,”mem_limit”:768}</strong></p>
+
+
+
+<p>然后根据自己要安装的版本，找到要改动的位置，修改mem_limit值为小于实际内存即可。修改后保存，即可安装对应版本MySQL而不受内存限制了。</p>
+																					<div class="tags uk-clearfix">
+								<div class="tags uk-float-left"></div>
+								<div class="uk-float-right"></div>
+							</div>
+							
+						</article><div id="qzhai_comments">
+								
+<div id="disqus_thread"></div>
+							</div>
+							
+
+            		</div>
+				<div class="ft uk-visible-small"><p><a href="http://qzhai.net" target="_black" title="主题制作:衫小寨" data-uk-tooltip="{pos:'bottom'}"> Theme by Qzhai</a></p></div>            </div>
+       		       			        </div>
+
+				<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+							var ajaxignore_string = '';
+						var ajaxhome='http://zhang.fr/';
+			var ajaxloading_code = '<div class="loading" style="left:55%"><img src="http://zhang.fr/wp-content/themes/No.7_qzhai/img/box.gif"></script></div>';
+			var ajaxignore = ajaxignore_string.split(', ');
+						function app(){
+								$('pre').each(function(i, e) {hljs.highlightBlock(e)});
+							}
+		
+		<script type="text/javascript">
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"zzd-2"};
+/* ]]> */
+</script><script type="text/javascript" src="http://zhang.fr/wp-content/plugins/disqus-comment-system/public/js/comment_count.js"></script><script type="text/javascript">
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.17"},"disqusIdentifier":"13 http:\/\/zhang.fr\/?p=13","disqusShortname":"zzd-2","disqusTitle":"Python 3.6\u4e00\u952e\u5b89\u88c5\u811a\u672c for CentOS\/Debian","disqusUrl":"http:\/\/zhang.fr\/python-3-6-yi-jian-an-zhuang-jue-ben-for-centos-debian.html","postId":"13"};
+/* ]]> */
+</script><script type="text/javascript" src="http://zhang.fr/wp-content/plugins/disqus-comment-system/public/js/comment_embed.js"></script><script type="text/javascript" src="http://zhang.fr/wp-content/themes/No.7_qzhai/js/app.js"></script><a href="#" class="top" data-uk-smooth-scroll style="display:none"><i class="uk-icon-angle-up"></i></a>
+			</body></html>
